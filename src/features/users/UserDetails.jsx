@@ -47,16 +47,16 @@ function UserDetails() {
   }
   if (user)
     return (
-      <div className=" pl-5 flex flex-col bg-white w-screen h-screen ">
+      <div className="flex flex-col bg-white w-screen h-screen ">
         {Object.keys(user)?.length === 0 ? (
           <EmptyPage data="user" />
         ) : (
           <div className="flex flex-row mt-10">
-            <Avatar className=" w-50 h-50 ml-14 mt-10 ">
-              <AvatarImage src="/ava.png" alt="avatar" />
+            <Avatar className=" w-25 h-25 md:w-50 md:h-50 md:ml-14 sm:ml-10 mt-10 ">
+              <AvatarImage src="src/assets/ava.png" alt="avatar" />
               <AvatarFallback>USER</AvatarFallback>
             </Avatar>
-            <Card className=" w-200 ml-20 mr-20 mt-5 mb-15 h-80 bg-neutral-100 text-neutral-800 text-lg ">
+            <Card className="sm:w-100 sm:h-200 md:w-200 md:ml-20 sm:ml-5 mr-20 mt-5 mb-15 md:h-80 bg-neutral-100 text-neutral-800 text-lg ">
               <div>
                 <h1 className=" font-semibold ml-5">
                   {" "}
@@ -112,7 +112,7 @@ function UserDetails() {
         {Object.keys(todosData)?.length === 0 ? (
           <EmptyPage data="todos" />
         ) : (
-          <Card className=" bg-neutral-100 w-200 ml-85 ">
+          <Card className=" bg-neutral-100 md:w-200 sm:w-100 md:ml-85  ">
             <Table className="ml-10">
               <TableHeader className="">
                 <TableRow>

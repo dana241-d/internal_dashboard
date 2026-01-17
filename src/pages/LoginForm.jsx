@@ -1,11 +1,9 @@
 import AppSpinner from "@/ui/AppSpinner";
 import { Input } from "@/components/ui/input";
-// import { generateToken } from "@/services/authApi";
 import AppButton from "@/ui/AppButton";
 import { useForm, FormProvider } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { useContext, useEffect } from "react";
-import { AuthProvider } from "@/contexts/AuthProvider";
 import { AuthContext } from "@/contexts/AuthContext";
 
 function LoginForm() {
@@ -37,7 +35,10 @@ function LoginForm() {
       {isLoading && <AppSpinner />}
       <FormProvider>
         <div className=" w-11/12 max-w-md md:mx-40 sm:60 my-auto mt-12 sm:mt-16 p-5 sm:p-8 border rounded-2xl shadow-2xl bg-white ">
-          <form onSubmit={handleSubmit(onSubmit)}>
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className="flex flex-col items-center"
+          >
             <Input
               type="email"
               className=" w-full sm:w-72 md:w-80 px-3 py-2 rounded-2xl mb-2.5"
@@ -61,11 +62,7 @@ function LoginForm() {
             {errors?.password && (
               <p className="text-red-600 "> {errors.password.message} </p>
             )}
-            {/* <Link to="signup" className="text-blue-800 hover:underline ">
-              {" "}
-              Create account{" "}
-            </Link> */}
-            <AppButton className="w-full sm:w-72 md:w-60 sm:mx-2 lg:mx-80 my-auto" />
+            <AppButton className="w-full  sm:w-60 md:w-60  mt-4" />
           </form>
         </div>
       </FormProvider>

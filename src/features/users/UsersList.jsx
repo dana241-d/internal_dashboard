@@ -46,22 +46,14 @@ function UsersList() {
                 className="w-full h-10 hover:bg-neutral-400 cursor-auto"
                 key={user.id}
               >
-                <TableCell className="text-lg  px-6 py-4 text-neutral-800 text-center ">
-                  <p className="flex items-center justify-center">
-                    {user.name}
-                  </p>
+                <TableCell className="text-lg  px-6 py-4 text-neutral-800  ">
+                  <p className="text-center">{user.name}</p>
                 </TableCell>
-                <TableCell className="px-6 py-4 text-gray-700 text-center ">
-                  <p className="flex items-center justify-center">
-                    {" "}
-                    {user.email}{" "}
-                  </p>
+                <TableCell className="px-6 py-4 text-gray-700  ">
+                  <p className="text-center"> {user.email} </p>
                 </TableCell>
-                <TableCell className="px-6 py-4 text-gray-700 text-center ">
-                  <p className="flex items-center justify-center">
-                    {" "}
-                    {user.company.name}{" "}
-                  </p>
+                <TableCell className="px-6 py-4 text-gray-700 ">
+                  <p className="text-center"> {user.company.name} </p>
                 </TableCell>
                 <TableCell className="px-6 py-4 text-gray-700 text-center ">
                   <Link
@@ -74,18 +66,6 @@ function UsersList() {
                       <Eye className="w-5 h-5" />
                     </span>
                   </Link>
-                  {/* <DropdownMenu className=" hover:underline">
-                  <DropdownMenuTrigger
-                    className="relative group hover:underline hover:icon"
-                    onClick={() => navigate(`/users/${user.id}`)}
-                  >
-                    View Details{" "}
-                    <span className="ml-5 absolute  top-[0.7] translate-y-0.5 opacity-0  group-hover:opacity-100 transition-opacity duration-300">
-                      <Eye className="w-5 h-5" />
-                    </span>
-                  </DropdownMenuTrigger>
-                  
-                </DropdownMenu> */}
                 </TableCell>
               </TableRow>
             ))}
@@ -93,7 +73,6 @@ function UsersList() {
         </div>
       )}
 
-      {/* {isGettingUsers && <AppSpinner />} */}
       {users?.length < 1 && <EmptyPage data="users" />}
       {isError && <Error error={error.message} />}
     </div>
