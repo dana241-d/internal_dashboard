@@ -10,7 +10,6 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
 import Login from "@/pages/Login";
-// import { isAuthenticated } from "@/services/authApi";
 import {
   UsersIcon,
   LogOutIcon,
@@ -19,7 +18,7 @@ import {
   MenuIcon,
   XIcon,
 } from "lucide-react";
-// import { useState } from "react";
+
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const links = [
@@ -27,7 +26,6 @@ const links = [
   { to: "/logout", icon: LogOutIcon, title: "Logout" },
 ];
 
-// import { handleLOgout } from "@/services/authApi";
 import { useContext } from "react";
 import { AuthContext } from "@/contexts/AuthContext";
 

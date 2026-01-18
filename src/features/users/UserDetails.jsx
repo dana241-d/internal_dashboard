@@ -53,20 +53,21 @@ function UserDetails() {
         ) : (
           <div className="flex flex-row mt-10">
             <Avatar className=" w-25 h-25 md:w-50 md:h-50 md:ml-14 sm:ml-10 mt-10 ">
-              <AvatarImage src="src/assets/ava.png" alt="avatar" />
+              <AvatarImage src="/ava.png" alt="avatar" />
               <AvatarFallback>USER</AvatarFallback>
             </Avatar>
             <Card className="sm:w-100 sm:h-200 md:w-200 md:ml-20 sm:ml-5 mr-20 mt-5 mb-15 md:h-80 bg-neutral-100 text-neutral-800 text-lg ">
               <div>
                 <h1 className=" font-semibold ml-5">
                   {" "}
-                  User Name: <span className=" ml-30">{user?.name} </span>
+                  User Name:{" "}
+                  <span className="ml-5 md:ml-30">{user?.name} </span>
                 </h1>
               </div>
               <div>
                 <span className="flex">
                   <h2 className="font-semibold ml-5"> Company Details:</h2>
-                  <span className=" ml-20">
+                  <span className="md:ml-20 ml-5">
                     <h3>
                       {" "}
                       <span className="font-semibold "> Name:</span>{" "}
@@ -88,7 +89,7 @@ function UserDetails() {
               <div>
                 <span className="flex">
                   <span className="font-semibold ml-5"> User Address: </span>
-                  <h2 className="ml-25">
+                  <h2 className="md:ml-25 ml-5">
                     {" "}
                     {user?.address?.city}/{user?.address?.street}{" "}
                   </h2>
@@ -102,7 +103,7 @@ function UserDetails() {
                     {" "}
                     Phone Number:
                   </span>{" "}
-                  <h2 className="ml-22"> {user?.phone} </h2>
+                  <h2 className="md:ml-22 ml-5"> {user?.phone} </h2>
                 </span>
               </div>
             </Card>

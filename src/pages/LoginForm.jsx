@@ -23,8 +23,12 @@ function LoginForm() {
     if (!email && !password) {
       throw new Error("Invalid email or password");
     }
-    login({ email, password });
-    // if (isAuth === true) navigate("/users");
+    if (email === "dana@adel" && password === "dana12345") {
+      login({ email, password });
+    } else {
+      throw new Error("Please enter the right email and password");
+    }
+
     console.log("login error", login);
     console.log("form auth", isAuth);
     console.log("email", email, "password", password);

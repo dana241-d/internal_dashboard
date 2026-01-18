@@ -10,16 +10,12 @@ export function AuthProvider({ children }) {
     if (!email && !password) {
       throw new Error("Invalid email or password");
     }
-    // if (email != "dana@adel" || password != "123456788") {
-    //   throw new Error("Wrong email or paswword");
-    // }
 
     const token = generateToken();
     sessionStorage.setItem("token", token);
     sessionStorage.setItem("user", JSON.stringify({ email }));
     setIsAuth(!!token);
 
-    // console.log("lodin logic auth", isAuth);
     return !!token;
   };
 

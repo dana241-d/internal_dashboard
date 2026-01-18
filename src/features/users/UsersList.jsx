@@ -32,7 +32,6 @@ function UsersList() {
     queryFn: getUsers,
   });
   console.log("users error", isError);
-  // const navigate = useNavigate();
   return (
     <div className="w-full flex flex-col ">
       {isGettingUsers ? (
