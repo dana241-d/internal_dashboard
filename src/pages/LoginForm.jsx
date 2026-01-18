@@ -3,7 +3,7 @@ import { Input } from "@/components/ui/input";
 import AppButton from "@/ui/AppButton";
 import { useForm, FormProvider } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "@/contexts/AuthContext";
 
 function LoginForm() {
@@ -12,7 +12,7 @@ function LoginForm() {
   const { isAuth } = useContext(AuthContext);
   const { register, handleSubmit, formState } = useForm({ mode: "onChange" });
   const { errors, isLoading } = formState;
-
+  const [authError, setAuthError] = useState(null);
   useEffect(() => {
     if (isAuth) navigate("/users");
   }, [isAuth, navigate]);
@@ -26,7 +26,8 @@ function LoginForm() {
     if (email === "dana@adel" && password === "dana12345") {
       login({ email, password });
     } else {
-      throw new Error("Please enter the right email and password");
+      setAuthError("Please enter the correct email and password");
+      throw new Error("Please enter the correct email and password");
     }
 
     console.log("login error", login);
@@ -63,6 +64,9 @@ function LoginForm() {
               })}
               placeholder="Password"
             />
+            {authError !== null && (
+              <p className="text-red-500 ">{authError} </p>
+            )}
             {errors?.password && (
               <p className="text-red-600 "> {errors.password.message} </p>
             )}
