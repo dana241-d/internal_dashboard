@@ -15,8 +15,8 @@ function UsersTable({ children, isGettingUsers, data }) {
   }
   if (!data || data.length === 0) return null;
   return (
-    <div className="w-full overflow-x-auto">
-      <Table className=" w-full border rounded-lg">
+    <div className="w-full overflow-x-auto ">
+      <Table className=" w-full border rounded-4xl">
         <TableHeader className="bg-neutral-600">
           <TableRow className="h-25">
             <TableHead className="text-left text-[#f1f1f1]  text-3xl font-semibold">

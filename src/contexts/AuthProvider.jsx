@@ -23,8 +23,9 @@ export function AuthProvider({ children }) {
     console.log("logout logic");
     const removing = sessionStorage.removeItem("token");
     sessionStorage.removeItem("user");
-    setIsAuth(removing);
-    console.log("is authenticated", isAuth);
+    setIsAuth(!!removing);
+    console.log("logout auth state", isAuth);
+    console.log("user after logout", sessionStorage.getItem("user"));
   };
 
   return (

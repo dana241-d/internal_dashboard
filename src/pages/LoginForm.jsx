@@ -15,6 +15,7 @@ function LoginForm() {
   const [authError, setAuthError] = useState(null);
   useEffect(() => {
     if (isAuth) navigate("/users");
+    console.log("auth after effect", isAuth);
   }, [isAuth, navigate]);
 
   console.log("errors", errors);
@@ -39,14 +40,14 @@ function LoginForm() {
     <>
       {isLoading && <AppSpinner />}
       <FormProvider>
-        <div className=" w-11/12 max-w-md md:mx-40 sm:60 my-auto mt-12 sm:mt-16 p-5 sm:p-8 border rounded-2xl shadow-2xl bg-white ">
+        <div className="w-11/12 max-w-md md:mx-40 sm:60 my-auto mt-12 sm:mt-16 p-5 sm:p-8 border rounded-2xl shadow-2xl bg-white ">
           <form
             onSubmit={handleSubmit(onSubmit)}
             className="flex flex-col items-center"
           >
             <Input
               type="email"
-              className=" w-full sm:w-72 md:w-80 px-3 py-2 rounded-2xl mb-2.5"
+              className=" w-full sm:w-72 md:w-80 md:h-15 px-3 py-2 rounded-2xl mb-2.5"
               {...register("email", { required: "Email is required" })}
               placeholder="Email"
             />
@@ -54,7 +55,7 @@ function LoginForm() {
               <p className="text-red-600 "> {errors.email.message} </p>
             )}{" "}
             <Input
-              className="w-full sm:w-72 md:w-80 px-3 py-2 rounded-2xl mb-2.5"
+              className="w-full sm:w-72 md:h-15 md:w-80 px-3 py-2 rounded-2xl mb-0"
               {...register("password", {
                 required: "Password is required",
                 validate: (value) => {

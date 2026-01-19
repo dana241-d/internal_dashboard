@@ -2,7 +2,7 @@ import SideBar from "./AppSidebar";
 import { Outlet } from "react-router-dom";
 import { useContext, useState } from "react";
 import { AuthContext } from "@/contexts/AuthContext";
-import { MenuIcon } from "lucide-react";
+import { ArrowBigLeftDashIcon, Backpack, MenuIcon } from "lucide-react";
 
 function AppLayout() {
   const { isAuth } = useContext(AuthContext);
@@ -12,21 +12,30 @@ function AppLayout() {
       {isAuth ? (
         <SideBar isOpen={isOpen} setIsOpen={setIsOpen} />
       ) : (
-        <div className="md:w-64 sm:w-24 md:h-30 sm:h-12.5 justify-center">
+        <div className="md:w-64 hidden md:block md:h-30 sm:h-12.5 justify-center">
           <img src="src/assets/download.png" />{" "}
         </div>
       )}
 
-      <main className="flex-1 overflow-x-scroll p-4 md:p-8 h-full md:w-full ">
-        {isAuth && (
-          <button
-            className="md:hidden fixed top-4 left-4 z-50 p-2 bg-neutral-500
+      <main className="flex-1 overflow-x-scroll overflow-y-auto p-10 md:p-0 h-full md:w-full ">
+        {
+          isAuth && (
+            <button
+              onClick={() => setIsOpen(true)}
+              className="md:hidden fixed top-4 left-4 z-50 p-2 bg-neutral-500 
          text-white rounded  "
-            onClick={() => setIsOpen(true)}
-          >
-            <MenuIcon className="h-6 w-6" />
-          </button>
-        )}
+            >
+              <MenuIcon className="h-6 w-6" />
+            </button>
+          )
+          // <div className="flex flex-row items-start justify-between bg-red-400"></div>
+          /* <button
+              className="md:hidden sm:block "
+              onClick={() => window.history.back()}
+            >
+              <ArrowBigLeftDashIcon className=" h-8 w-8" />
+            </button> */
+        }
         <Outlet />
       </main>
     </div>

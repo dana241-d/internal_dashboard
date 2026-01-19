@@ -1,7 +1,7 @@
-import { Navigate } from "react-router-dom";
-import Logout from "@/pages/Logout";
+// import { Navigate } from "react-router-dom";
+// import Logout from "@/pages/Logout";
 
-let isUserAuthenticated = false;
+// let isUserAuthenticated = false;
 
 export function generateToken() {
   return (
@@ -21,14 +21,14 @@ export function generateToken() {
 //   return token;
 // }
 
-export function handleLOgout() {
-  sessionStorage.removeItem("token");
-  sessionStorage.removeItem("user");
-  // console.log("our token now", sessionStorage.getItem("token"));
-}
+// export function handleLOgout() {
+//   sessionStorage.removeItem("token");
+//   sessionStorage.removeItem("user");
+//   // console.log("our token now", sessionStorage.getItem("token"));
+// }
 
-export function isAuthenticated() {
-  // console.log("is auth", isUserAuthenticated);
-  return (isUserAuthenticated = !!sessionStorage.getItem("token"));
-}
-export { isUserAuthenticated };
+// export function isAuthenticated() {
+//   // console.log("is auth", isUserAuthenticated);
+//   return (isUserAuthenticated = !!sessionStorage.getItem("token"));
+// }
+// export { isUserAuthenticated };

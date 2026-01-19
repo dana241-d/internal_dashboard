@@ -42,22 +42,22 @@ function UsersList() {
           <UsersTable isGettingUsers={isGettingUsers} data={users}>
             {users?.map((user) => (
               <TableRow
-                className="w-full h-10 hover:bg-neutral-400 cursor-auto"
+                className="w-full h-12 hover:bg-neutral-400 cursor-auto"
                 key={user.id}
               >
-                <TableCell className="text-lg  px-6 py-4 text-neutral-800  ">
+                <TableCell className="md:text-lg text-sm  px-6 py-4 text-neutral-800  ">
                   <p className="text-center">{user.name}</p>
                 </TableCell>
-                <TableCell className="px-6 py-4 text-gray-700  ">
+                <TableCell className="md:text-lg px-6 py-4 text-gray-700  ">
                   <p className="text-center"> {user.email} </p>
                 </TableCell>
-                <TableCell className="px-6 py-4 text-gray-700 ">
+                <TableCell className="md:text-lg px-6 py-4 text-gray-700 ">
                   <p className="text-center"> {user.company.name} </p>
                 </TableCell>
-                <TableCell className="px-6 py-4 text-gray-700 text-center ">
+                <TableCell className="md:text-lg px-6 py-4 text-gray-700 text-center ">
                   <Link
                     to={`/users/${user.id}`}
-                    className="relative group hover:underline hover:icon"
+                    className="relative group hover:underline hover:icon hover:font-bold"
                   >
                     {" "}
                     View Details{" "}

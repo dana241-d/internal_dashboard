@@ -26,7 +26,7 @@ const links = [
   { to: "/logout", icon: LogOutIcon, title: "Logout" },
 ];
 
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { AuthContext } from "@/contexts/AuthContext";
 
 function AppSidebar({ isOpen, setIsOpen }) {
@@ -35,16 +35,20 @@ function AppSidebar({ isOpen, setIsOpen }) {
   const { isAuth } = useContext(AuthContext);
   const { logout } = useContext(AuthContext);
 
+  useEffect(() => {
+    if (isAuth === false) navigate("/login");
+    console.log("auth after logout", isAuth);
+  }, [isAuth, navigate]);
+
   function logoutLogic() {
     const confirmed = window.confirm(
       "Are you sure you want to complete logout?"
     );
     if (confirmed) {
       logout();
-      if (isAuth === false) navigate("/login");
+      // if (isAuth === false) navigate("/login");
+      // console.log("logout logic", isAuth);
     }
-
-    console.log("logout logic", isAuth);
   }
 
   function usersLogic() {
@@ -53,12 +57,12 @@ function AppSidebar({ isOpen, setIsOpen }) {
 
   return (
     <div>
-      {isOpen && (
+      {/* {isOpen && (
         <div
-          className="fixed inset-0 z-30 md:hidden"
+          className="fixed inset-0 z-30 md:hidden overflow-y-auto bg-white"
           onClick={() => setIsOpen(false)}
         />
-      )}
+      )} */}
 
       <aside
         className={`fixed top-0 left-0 z-40 h-full w-64 bg-white text-neutral-600 transform transition-transform
@@ -109,64 +113,6 @@ function AppSidebar({ isOpen, setIsOpen }) {
       </aside>
     </div>
   );
-
-  // return (
-  //   <div className="relative flex min-h-screen bg-neutral-500">
-  //     <div
-  //       className={`fixed inset-0 bg-black bg-opacity-50 z-20 transition-opacity ${
-  //         isOpen ? "opacity-100" : "opacity-0 pointer-events-none"
-  //       }`}
-  //       onClick={() => setIsOpen(false)}
-  //     />
-
-  //     <Sidebar
-  //       className={`md:translate-x-0 md:static absolute top-0 left-0 z-40 h-full w-64 transform transition-transform bg-gray-800
-  //         ${
-  //           isOpen ? "translate-x-0 " : "-translate-x-full "
-  //         }md:translate-x-0 md:static
-  //      text-neutral-900 font-bold flex flex-col shadow-lg`}
-  //     >
-  //       <div className="flex justify-end p-4 md:hidden">
-  //         <button onClick={() => setIsOpen(false)}>
-  //           <XIcon className="w-6 h-6" />
-  //         </button>
-  //       </div>
-  //       <SidebarHeader className="bg-none  h-40 px-6 py-4 text-2xl font-bold border-gray-800 mb-18">
-  //         <Link to="/users">
-  //           <img src="src/assets/download.png" className="hidden md:block" />{" "}
-  //         </Link>
-  //       </SidebarHeader>
-
-  //       <SidebarContent>
-  //         <SidebarGroup>
-  //           <SidebarGroupContent>
-  //             <SidebarMenu>
-  //               {links.map((link) => {
-  //                 const isActive = location.pathname === link.to;
-  //                 return (
-  //                   <SidebarMenuItem
-  //                     onClick={() => {
-  //                       setIsOpen(false);
-  //                       link.to === "/logout" ? logoutLogic() : usersLogic();
-  //                     }}
-  //                     key={link.title}
-  //                     className={`h-20 hover:bg-neutral-400 bg-white
-  //                 rounded-2xl ${
-  //                   isActive ? "bg-neutral-400" : ""
-  //                 } flex items-center justify-center mb-5 `}
-  //                   >
-  //                     <link.icon /> <span>{link.title} </span>
-  //                   </SidebarMenuItem>
-  //                 );
-  //               })}
-  //             </SidebarMenu>
-  //           </SidebarGroupContent>
-  //         </SidebarGroup>
-  //       </SidebarContent>
-  //       <SidebarFooter></SidebarFooter>
-  //     </Sidebar>
-  //   </div>
-  // );
 }
 
 export default AppSidebar;
