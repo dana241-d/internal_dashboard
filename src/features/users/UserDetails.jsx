@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/table";
 import Error from "@/ui/Error";
 import EmptyPage from "@/ui/EmptyPage";
+import { Building2, LocationEdit, Phone, UserIcon } from "lucide-react";
 
 function UserDetails() {
   const { id } = useParams();
@@ -47,26 +48,34 @@ function UserDetails() {
   }
   if (user)
     return (
-      <div className=" pl-5 flex flex-col bg-white w-screen h-screen ">
+      <div className="flex flex-col bg-white w-screen h-screen md:ml-10 ">
         {Object.keys(user)?.length === 0 ? (
           <EmptyPage data="user" />
         ) : (
-          <div className="flex flex-row mt-10">
-            <Avatar className=" w-50 h-50 ml-14 mt-10 ">
+          <div className="flex flex-row md:mt-10">
+            <Avatar className=" w-25 h-25 md:w-50 md:h-50 md:ml-14 sm:ml-10 md:mt-10 mt-5 ">
               <AvatarImage src="/ava.png" alt="avatar" />
               <AvatarFallback>USER</AvatarFallback>
             </Avatar>
-            <Card className=" w-200 ml-20 mr-20 mt-5 mb-15 h-80 bg-neutral-100 text-neutral-800 text-lg ">
-              <div>
-                <h1 className=" font-semibold ml-5">
+            <Card className="sm:w-100 sm:h-270  md:w-200 md:ml-20 sm:ml-5 mr-20 mt-5 md:mb-15 mb-5 md:h-100 bg-neutral-100 text-neutral-800 text-lg ">
+              <div className="flex space-x-4">
+                <h1 className="md:w-180 md:h-15 font-semibold ml-5  bg-neutral-200 rounded-l-lg">
                   {" "}
-                  User Name: <span className=" ml-30">{user?.name} </span>
+                  <p className="flex flex-row items-baseline ">
+                    <UserIcon /> User Name:{" "}
+                    <span className="sm:ml-10 sm:mt-0 md:mt-0 md:ml-25 ">
+                      {user?.name}{" "}
+                    </span>
+                  </p>
                 </h1>
               </div>
               <div>
-                <span className="flex">
-                  <h2 className="font-semibold ml-5"> Company Details:</h2>
-                  <span className=" ml-20">
+                <span className="flex ">
+                  <h2 className=" font-semibold ml-5">
+                    {" "}
+                    <Building2 /> Company Details:
+                  </h2>
+                  <span className="md:ml-18 ml-5">
                     <h3>
                       {" "}
                       <span className="font-semibold "> Name:</span>{" "}
@@ -86,9 +95,12 @@ function UserDetails() {
                 </span>
               </div>
               <div>
-                <span className="flex">
-                  <span className="font-semibold ml-5"> User Address: </span>
-                  <h2 className="ml-25">
+                <span className="flex items-baseline">
+                  <span className="font-semibold ml-5">
+                    {" "}
+                    <LocationEdit /> User Address:{" "}
+                  </span>
+                  <h2 className="md:ml-25 ml-5">
                     {" "}
                     {user?.address?.city}/{user?.address?.street}{" "}
                   </h2>
@@ -96,13 +108,14 @@ function UserDetails() {
               </div>
 
               <div>
-                <span className="flex">
+                <span className="flex items-baseline">
                   {" "}
                   <span className="font-semibold ml-5">
                     {" "}
+                    <Phone />
                     Phone Number:
                   </span>{" "}
-                  <h2 className="ml-22"> {user?.phone} </h2>
+                  <h2 className="md:ml-22 font-semibold "> {user?.phone} </h2>
                 </span>
               </div>
             </Card>
@@ -112,8 +125,8 @@ function UserDetails() {
         {Object.keys(todosData)?.length === 0 ? (
           <EmptyPage data="todos" />
         ) : (
-          <Card className=" bg-neutral-100 w-200 ml-85 ">
-            <Table className="ml-10">
+          <Card className=" bg-neutral-100 md:w-200 sm:w-130 md:ml-85  ml-24 ">
+            <Table className=" ml-10 overflow-x-auto">
               <TableHeader className="">
                 <TableRow>
                   <TableHead className=" text-lg text-neutral-800 font-semibold ">
@@ -131,11 +144,13 @@ function UserDetails() {
               <TableBody>
                 {todosData?.map((todo) => (
                   <TableRow
-                    className="hover:bg-neutral-300 hover:cursor-cell"
+                    className="hover:bg-neutral-300 hover:cursor-cell "
                     key={todo.id}
                   >
-                    <TableCell className="text-[20px] ">{todo.id}</TableCell>
-                    <TableCell className=" text-base w-40 ">
+                    <TableCell className="text-[20px] font-medium max-w-5  ">
+                      {todo.id}
+                    </TableCell>
+                    <TableCell className=" md:text-base truncate max-w-25 ">
                       {todo.title}{" "}
                     </TableCell>
                     <TableCell className="text-[20px] text-gray-900">

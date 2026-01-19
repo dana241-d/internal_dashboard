@@ -1,12 +1,13 @@
 const base_URL = "https://jsonplaceholder.typicode.com/users";
 // empty api https://mocki.io/v1/d538e43f-da5c-419a-b9e4-637aa0c08b9d
 const todos_URL = "https://jsonplaceholder.typicode.com/todos";
+//https://mocki.io/v1/abaf1ded-1a03-4709-bcc1-dd219a51b472
 
 export async function getUsers() {
   const res = await fetch(base_URL);
   if (!res.ok) throw new Error("Something went wrong while getting users ");
   const data = await res.json();
-  console.log("users datttttta sd", data);
+  console.log("users ", data);
   return data;
 }
 

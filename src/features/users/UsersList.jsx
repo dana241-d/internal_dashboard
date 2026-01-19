@@ -32,7 +32,6 @@ function UsersList() {
     queryFn: getUsers,
   });
   console.log("users error", isError);
-  // const navigate = useNavigate();
   return (
     <div className="w-full flex flex-col ">
       {isGettingUsers ? (
@@ -43,30 +42,22 @@ function UsersList() {
           <UsersTable isGettingUsers={isGettingUsers} data={users}>
             {users?.map((user) => (
               <TableRow
-                className="w-full h-10 hover:bg-neutral-400 cursor-auto"
+                className="w-full h-12 hover:bg-neutral-400 cursor-auto"
                 key={user.id}
               >
-                <TableCell className="text-lg  px-6 py-4 text-neutral-800 text-center ">
-                  <p className="flex items-center justify-center">
-                    {user.name}
-                  </p>
+                <TableCell className="md:text-lg text-sm  px-6 py-4 text-neutral-800  ">
+                  <p className="text-center">{user.name}</p>
                 </TableCell>
-                <TableCell className="px-6 py-4 text-gray-700 text-center ">
-                  <p className="flex items-center justify-center">
-                    {" "}
-                    {user.email}{" "}
-                  </p>
+                <TableCell className="md:text-lg px-6 py-4 text-gray-700  ">
+                  <p className="text-center"> {user.email} </p>
                 </TableCell>
-                <TableCell className="px-6 py-4 text-gray-700 text-center ">
-                  <p className="flex items-center justify-center">
-                    {" "}
-                    {user.company.name}{" "}
-                  </p>
+                <TableCell className="md:text-lg px-6 py-4 text-gray-700 ">
+                  <p className="text-center"> {user.company.name} </p>
                 </TableCell>
-                <TableCell className="px-6 py-4 text-gray-700 text-center ">
+                <TableCell className="md:text-lg px-6 py-4 text-gray-700 text-center ">
                   <Link
                     to={`/users/${user.id}`}
-                    className="relative group hover:underline hover:icon"
+                    className="relative group hover:underline hover:icon hover:font-bold"
                   >
                     {" "}
                     View Details{" "}
@@ -74,18 +65,6 @@ function UsersList() {
                       <Eye className="w-5 h-5" />
                     </span>
                   </Link>
-                  {/* <DropdownMenu className=" hover:underline">
-                  <DropdownMenuTrigger
-                    className="relative group hover:underline hover:icon"
-                    onClick={() => navigate(`/users/${user.id}`)}
-                  >
-                    View Details{" "}
-                    <span className="ml-5 absolute  top-[0.7] translate-y-0.5 opacity-0  group-hover:opacity-100 transition-opacity duration-300">
-                      <Eye className="w-5 h-5" />
-                    </span>
-                  </DropdownMenuTrigger>
-                  
-                </DropdownMenu> */}
                 </TableCell>
               </TableRow>
             ))}
@@ -93,7 +72,6 @@ function UsersList() {
         </div>
       )}
 
-      {/* {isGettingUsers && <AppSpinner />} */}
       {users?.length < 1 && <EmptyPage data="users" />}
       {isError && <Error error={error.message} />}
     </div>

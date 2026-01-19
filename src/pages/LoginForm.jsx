@@ -1,11 +1,9 @@
 import AppSpinner from "@/ui/AppSpinner";
 import { Input } from "@/components/ui/input";
-// import { generateToken } from "@/services/authApi";
 import AppButton from "@/ui/AppButton";
 import { useForm, FormProvider } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
-import { useContext, useEffect } from "react";
-import { AuthProvider } from "@/contexts/AuthProvider";
+import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "@/contexts/AuthContext";
 
 function LoginForm() {
@@ -14,9 +12,10 @@ function LoginForm() {
   const { isAuth } = useContext(AuthContext);
   const { register, handleSubmit, formState } = useForm({ mode: "onChange" });
   const { errors, isLoading } = formState;
-
+  const [authError, setAuthError] = useState(null);
   useEffect(() => {
     if (isAuth) navigate("/users");
+    console.log("auth after effect", isAuth);
   }, [isAuth, navigate]);
 
   console.log("errors", errors);
@@ -25,8 +24,13 @@ function LoginForm() {
     if (!email && !password) {
       throw new Error("Invalid email or password");
     }
-    login({ email, password });
-    // if (isAuth === true) navigate("/users");
+    if (email === "dana@adel" && password === "dana12345") {
+      login({ email, password });
+    } else {
+      setAuthError("Please enter the correct email and password");
+      throw new Error("Please enter the correct email and password");
+    }
+
     console.log("login error", login);
     console.log("form auth", isAuth);
     console.log("email", email, "password", password);
@@ -36,11 +40,14 @@ function LoginForm() {
     <>
       {isLoading && <AppSpinner />}
       <FormProvider>
-        <div className=" w-11/12 max-w-md md:mx-40 sm:60 my-auto mt-12 sm:mt-16 p-5 sm:p-8 border rounded-2xl shadow-2xl bg-white ">
-          <form onSubmit={handleSubmit(onSubmit)}>
+        <div className="w-11/12 max-w-md md:mx-40 sm:60 my-auto mt-12 sm:mt-16 p-5 sm:p-8 border rounded-2xl shadow-2xl bg-white ">
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className="flex flex-col items-center"
+          >
             <Input
               type="email"
-              className=" w-full sm:w-72 md:w-80 px-3 py-2 rounded-2xl mb-2.5"
+              className=" w-full sm:w-72 md:w-80 md:h-15 px-3 py-2 rounded-2xl mb-2.5"
               {...register("email", { required: "Email is required" })}
               placeholder="Email"
             />
@@ -48,7 +55,7 @@ function LoginForm() {
               <p className="text-red-600 "> {errors.email.message} </p>
             )}{" "}
             <Input
-              className="w-full sm:w-72 md:w-80 px-3 py-2 rounded-2xl mb-2.5"
+              className="w-full sm:w-72 md:h-15 md:w-80 px-3 py-2 rounded-2xl mb-0"
               {...register("password", {
                 required: "Password is required",
                 validate: (value) => {
@@ -58,14 +65,13 @@ function LoginForm() {
               })}
               placeholder="Password"
             />
+            {authError !== null && (
+              <p className="text-red-500 ">{authError} </p>
+            )}
             {errors?.password && (
               <p className="text-red-600 "> {errors.password.message} </p>
             )}
-            {/* <Link to="signup" className="text-blue-800 hover:underline ">
-              {" "}
-              Create account{" "}
-            </Link> */}
-            <AppButton className="w-full sm:w-72 md:w-60 sm:mx-2 lg:mx-80 my-auto" />
+            <AppButton className="w-full  sm:w-60 md:w-60  mt-4" />
           </form>
         </div>
       </FormProvider>
